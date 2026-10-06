@@ -1,0 +1,24 @@
+#!/usr/bin/env python3
+"""Stand-in for Homebrew in the tests: list, upgrade topgrade, --cellar, services restart.
+
+`upgrade topgrade` writes the new version from $FAKE_PLAN ("upgrade_to") into $FAKE_VERSION_FILE.
+`--cellar <name>` answers $FAKE_CELLAR/<name>.
+"""
+import json
+import os
+import sys
+
+plan = json.load(open(os.environ["FAKE_PLAN"]))
+with open(os.environ["FAKE_CALLS"], "a") as calls:
+    calls.write(json.dumps(["brew"] + sys.argv[1:]) + "\n")
+args = sys.argv[1:]
+if args[:2] == ["list", "--versions"]:
+    print("topgrade 17.12.2")
+elif args[:2] == ["upgrade", "topgrade"]:
+    if plan.get("upgrade_to"):
+        open(os.environ["FAKE_VERSION_FILE"], "w").write(plan["upgrade_to"])
+    sys.exit(plan.get("upgrade_exit", 0))
+elif args[:1] == ["--cellar"]:
+    print(os.path.join(os.environ.get("FAKE_CELLAR", "/nonexistent"), args[1]))
+elif args[:2] == ["services", "restart"]:
+    sys.exit(plan.get("restart_exit", 0))

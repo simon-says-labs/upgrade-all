@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  macos:
+    name: macOS, Apple's /usr/bin/python3
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Python version
+        run: /usr/bin/python3 --version
+      - name: Tests (stand-ins for topgrade and brew, nothing is updated)
+        run: /usr/bin/python3 -m unittest discover -s tests -v
+      - name: Install without the background job, then status
+        run: |
+          export UPGRADE_ALL_HOME="$RUNNER_TEMP/upgrade-all"
+          /usr/bin/python3 -m upgrade_all install --no-agent
+          "$UPGRADE_ALL_HOME/upgrade-all" status
+      - name: Sample reports in five languages
+        run: for l in en de fr it es; do /usr/bin/python3 -m upgrade_all sample-report "$RUNNER_TEMP/report-$l.html" --language $l; done
+
+  linux:
+    name: Linux, current Python
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.x"
+      - name: Tests
+        run: python -m unittest discover -s tests -v

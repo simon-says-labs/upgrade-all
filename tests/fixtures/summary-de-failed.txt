@@ -1,0 +1,12 @@
+npm error code EPERM
+―― 09:24:10 - Zusammenfassung ――
+Brew (ARM): OK
+Brew Cask (ARM): OK
+Microsoft Office: OK
+pipx: OK
+Visual Studio Code extensions: OK
+npm: FEHLGESCHLAGEN
+Containers: OK
+GitHub CLI Extensions: OK
+Colima: FEHLGESCHLAGEN
+Skills: FEHLGESCHLAGEN
