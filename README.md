@@ -2,7 +2,7 @@
 
 # Upgrade All
 
-<p align="center"><b><a href="#deutsch">🇩🇪 Deutsch</a> · <a href="#english">🇬🇧 English</a></b></p>
+<p align="center"><b><a href="#deutsch">🇩🇪 Deutsch</a> · <a href="#english">🇬🇧 English</a> · <a href="docs/README.fr.md">🇫🇷 Français</a> · <a href="docs/README.it.md">🇮🇹 Italiano</a> · <a href="docs/README.es.md">🇪🇸 Español</a></b></p>
 
 > 🇩🇪 **Simon says: upgrade all!** Hält deinen Mac mit [topgrade](https://github.com/topgrade-rs/topgrade) alle paar
 > Tage im Hintergrund aktuell, behebt typische Fehler selbst und zeigt danach einen verständlichen Bericht.
