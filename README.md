@@ -9,9 +9,33 @@ to fix it by itself before it bothers you.
 > **Kurz auf Deutsch:** Upgrade All hält deinen Mac mit topgrade im Hintergrund aktuell (Homebrew, Apps,
 > npm, pipx, VS-Code-Erweiterungen und alles, was topgrade kennt) und zeigt danach einen Bericht. Schlägt ein
 > Schritt fehl, wird er einmal automatisch wiederholt. Eigene Zusatzschritte hängst du als Hook an. Bericht auf
-> Deutsch, Englisch, Französisch, Italienisch und Spanisch.
+> Deutsch, Englisch, Französisch, Italienisch und Spanisch. Entstanden aus der Suche nach einem Gegenstück zu
+> `winget upgrade --all` für den Mac – gerade für die Arbeit mit KI und Vibe Coding zählt ein aktueller Werkzeugkasten.
 
 <p align="center"><img src="docs/report-light.png" width="760" alt="Report of a run: your Mac is up to date, errors were fixed automatically. npm failed at first and succeeded on the retry; topgrade was updated first and a Homebrew service was restarted."></p>
+
+## Why keep everything up to date, especially for AI and vibe coding
+
+When you code with an AI assistant, the assistant works with the tools on **your** machine: git, Node, Python,
+uv, the GitHub CLI, compilers, MCP servers, the assistant's own command line tool and its editor extension. It
+cannot see that one of them is outdated. It reads documentation and examples written for current versions,
+calls flags your old version does not know, and spends your time chasing errors that a single update would have
+removed. The AI tools themselves move fastest of all: new models, new commands and fixes arrive as updates.
+
+Updates also carry the security fixes for everything a coding agent runs on your behalf.
+
+How much that is in practice, measured on the Mac this project comes from: between 17 July and 6 October 2026,
+24 runs updated **356 Homebrew packages** (formulae and apps), plus npm, pipx, VS Code extensions, containers and
+AI models. Nobody keeps that up by hand.
+
+## Where it came from
+
+On Windows, `winget upgrade --all` updates every installed application in one go. I was looking for the same on
+the Mac and found [topgrade](https://github.com/topgrade-rs/topgrade), an excellent tool that updates Homebrew,
+apps, language package managers, editor extensions and much more in a single command. What was missing was
+running it reliably without me: on a schedule, without questions, fixing the typical hiccups by itself and
+telling me afterwards what happened. That is Upgrade All. Since it runs every few days in the background, I no
+longer have to think about updates at all.
 
 ## What a run does
 
