@@ -84,6 +84,10 @@ order. Exit code `0` means OK, `3` skipped, anything else failed. A line startin
 report. `UPGRADE_ALL_LANGUAGE` and `UPGRADE_ALL_LOGS` are set. An extra step never changes topgrade's result.
 See [examples/hooks](examples/hooks) for one that keeps a Brewfile of everything installed.
 
+A hook that lives on an external disk may fail in the background with `Operation not permitted` (exit 126):
+macOS checks access per program, and `/bin/sh` usually has no permission there. Keep such hooks on the internal
+disk, or let an interpreter that already has access run them (for example `#!/opt/homebrew/bin/python3`).
+
 ## When macOS denies access
 
 macOS remembers some permissions, such as access to files on an external disk, **per program file**. topgrade's
