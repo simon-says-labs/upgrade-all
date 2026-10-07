@@ -1,4 +1,4 @@
-<p align="center"><img src="logo.png" width="250" alt="Upgrade All logo"></p>
+<p align="center"><img src="social-preview.png" width="100%" alt="Upgrade All. Simon says: upgrade all!"></p>
 
 # Upgrade All
 
